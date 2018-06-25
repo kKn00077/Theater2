@@ -32,6 +32,11 @@
 #submit {
 	height: 33px;
 }
+div{
+	text-align:center;
+	margin:auto;
+}
+
 
 </style>
 </head>
@@ -47,24 +52,26 @@ if(session.getAttribute("name")==null){ %>
 	<div id="serchDiv">
 		<form action="movieReview.jsp">
 			<select name="selectOption" id="selectOption">
-				<option value="all">감독+제목</option>
 				<option value="director">감독</option>
 				<option value="title">제목</option>
 			</select> 
 			<input type="text" name="search" id="serch"> 
 			<input type="submit" value="검색" id="submit">
-			<%
-				if(session.getAttribute("id")!=null){%>
-					<button type="button" onclick="location.href='movieReviewBoard.jsp' " id="submit">리뷰쓰기</button>
-			<%
-				}
-			%>
 			
 			<div id="reviewList" name="reviewList">
 			<!-- 리뷰 목록 표시 -->
-			</div>
+			<center>
+			<table>
 			
-			<%--
+			<tr>
+				<th>번호</th>
+				<th>글 제목</th>
+				<th>영화 제목</th>
+				<th>작성자</th>
+				<th>작성날짜</th>
+			</tr>
+			
+			<%
 				String type=request.getParameter("selectOption");
 				String searchtext=request.getParameter("search");
 				
@@ -76,7 +83,7 @@ if(session.getAttribute("name")==null){ %>
 
 				conn=MySQLConnection.GetMySQLConnection();
 				
-				String sql = "select id, title, user_id, wdate from board";
+				String sql = "select id, title, movie_title, user_id, wdate from board";
 
 				try{
 					pstmt = conn.prepareStatement(sql);
@@ -84,28 +91,38 @@ if(session.getAttribute("name")==null){ %>
 					//pstmt.setString(1,id);
 
 					rs = pstmt.executeQuery();
-
-					rs.next();
+					int count=1;
+					while(rs.next()){
 				
-					String getPw=rs.getString("user_pass");
-					String getId=rs.getString("user_id");
-					String getName=rs.getString("name");
+						String getid=rs.getString("id");
+						String gettitle=rs.getString("title");
+						String getmovietitle=rs.getString("movie_title");
+						String getuid=rs.getString("user_id");
+						String date=rs.getString("wdate");
+						%>
+						
+						<tr>
+							<td><%= count++%></td>
+							<td><a href="movieConfirm.jsp?id=<%=getid%>"><%= gettitle%></a></td>
+							<td><a href="movie.jsp?movie_name=<%=getmovietitle%>"><%= getmovietitle%></a></td>
+							<td><%= getuid%></td>
+							<td><%= date%></td>
+						</tr>
+						
+<% 					}
 				
 					MySQLConnection.close(conn);
 					
-					if(getPw.equals(pw)){ 
-						session.setAttribute("login", "yes");
-						session.setAttribute("id", getId);
-						session.setAttribute("name", getName);
-					}
 					
 					MySQLConnection.close(rs);
 					
 				}catch(SQLException e){
 					e.printStackTrace();
 				}
-			--%>
-			
+				 %>
+				 </table>
+				 </center>
+			</div>
 		</form>
 	</div>
 	

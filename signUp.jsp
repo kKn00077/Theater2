@@ -5,8 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>이거봤어</title>
+<link href="sign.css" type="text/css" rel="stylesheet">
 <style>
-#bg {
+/*#bg {
 	background-repeat: no-repeat;
 	width: 90%;
 	height: 50%;
@@ -24,9 +25,7 @@
 	height: 50px;
 	font-size: 15pt;
 }
-</style>
 
-<style>
 .wrap {
 	position: relative;
 	width: 100%;
@@ -46,13 +45,81 @@
 	text-align: center;
 	top: 150px;
 	margin: auto;
-}
+}*/
 </style>
 </head>
 <body>
 	<jsp:include page="top.jsp"/>
 
-	<div class="wrap">
+  	
+<div class="form">
+  <div class="form-toggle"></div>
+  <div class="form-panel one">
+    <div class="form-header">
+      <h1>회원가입</h1>
+    </div>
+    <div class="form-content">
+      <form method="post" action="signInProc.jsp">
+        <div class="form-group">
+          <label for="username">이름</label>
+          <input type="text" id="username" name="id" required="required"/>
+        </div>
+         <div class="form-group">
+          <label for="username">아이디</label>
+          <input type="text" id="username" name="id" required="required"/>
+        </div>
+        <div class="form-group">
+          <label for="password">비밀번호</label>
+          <input type="password" id="password" name="password" required="required"/>
+        </div>
+         <div class="form-group">
+          <label for="username">비밀번호 재입력</label>
+          <input type="password" id="username" name="re_password" required="required"/>
+        </div>
+         <div class="form-group">
+          <label for="username">성별</label>
+          <input type="radio" name="sex" id="m" value="m" checked>남자</label>&nbsp;
+		  <input type="radio" name="sex" id="w" value="w">여자</label>&nbsp;
+		  <input type="radio" name="sex" id="a" value="a">기타</label><br>
+        </div>
+        <div class="form-group">
+          <label for="username">생일</label>
+		  <input type="date" name="birth" style="height:23px;"  class="form" required><br>
+          <input type="text" id="username" name="id" required="required"/>
+        </div>
+       
+         <div class="form-group">
+          <label for="username">이메일</label>
+         <input type="text" name="email">@
+		 <select onchange="cng(this.value);" style="height:23px" name="domain" class="form">
+						<option value="">직접입력</option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="nate.com">nate.com</option>
+                        <option value="daum.net">daum.net</option>
+                        <option value="google.co.kr">google.co.kr</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="dreamwiz.com">dreamwiz.com</option>
+                        <option value="empal.com">empal.com</option>
+                        <option value="freechal.com">freechal.com</option>
+                        <option value="hotmail.com">hotmail.com</option>
+                        <option value="lycos.co.kr">lycos.co.kr</option>
+                        <option value="yahoo.com">yahoo.com</option>
+                        <option value="hanmail.net">hanmail.net</option>
+                        <option value="netian.net">netian.net</option>
+                        <option value="korea.com">korea.com</option>
+					</select><br>
+        </div>
+        <div class="form-group">
+			<input type="submit" value="회원가입" >
+        </div>
+        <div class="form-group">
+			<input type="button" onclick="location.href='signIn.jsp'" value="로그인">
+		</div>
+      </form>
+    </div>
+  </div>
+</div>
+	<!-- <div class="wrap">
 		<div class="over">
 		<form method="post" action="signUpProc.jsp">
 			이름 <input type="text" name="name" class="form"  required>
@@ -86,6 +153,6 @@
 		<a href="signIn.jsp">로그인</a> | <a href="find.jsp">아이디/비밀번호 찾기</a>
 		</div>
 	</div>
-
+-->
 </body>
 </html>

@@ -48,7 +48,7 @@ nav ul li:first-child {
 </head>
 <body>
 	<div id="header">
-		<a href="index.jsp"><img src="img/img/header.jpg" width="300px" height="80px"></a>
+		<a href="user_index.jsp"><img src="img/header.jpg" width="300px" height="80px"></a>
 	</div>
 	<div id="menu">
 		<nav>

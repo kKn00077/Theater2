@@ -12,19 +12,19 @@
 	width: 700px;
 	height: 500px;
 	margin-top: 3%;
-	background-color: olive;
-	color: #ffffff;
+	background-color: lightpink;
+	color: #000000;
 }
 #content{
-	background-color: olive;
+	background-color: lightpink;
 	width: 99%;
-	color: #ffffff;
+	color: #000000;
 	font-size: 15pt;
 }
 #title{
-	background-color: olive;
+	background-color: lightpink;
 	width: 80%;
-	color: #ffffff;
+	color: #000000;
 	font-size: 15pt;
 
 }
@@ -33,21 +33,23 @@
 <body>
 
 <%
+
+request.setCharacterEncoding("utf-8");
+response.setContentType("utf-8");
+
+String title=request.getParameter("title");
+
+
 if(session.getAttribute("name")==null){
 	response.sendRedirect("index.jsp");
 }
 %>
-<%
-if(session.getAttribute("name")==null){ %>
-	<jsp:include page="top.jsp" />
-<%
-}else{%>
-	<jsp:include page="user_top.jsp" />
-<%}
-%>
+
+<jsp:include page="user_top.jsp" />
 	<div id="board">
 		<form method="post" action="movieReviewProc.jsp">
 			제목 : <input type="text" name="title" id="title"><br>
+			영화 제목 : <input type="text" name="movietitle" id="title" value="<%=title %>" readonly><br>
 			<textarea rows="4" cols="50" name="content" id="content"></textarea><br>
 			<input type="submit" value="저장하기">
 		</form>

@@ -25,6 +25,7 @@
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String id=(String)session.getAttribute("id");
+		String movietitle=request.getParameter("movietitle");
 		System.out.println(date.format(today));
 		
 		Connection conn;
@@ -32,7 +33,7 @@
 
 		conn=MySQLConnection.GetMySQLConnection();
 		
-		String sql = "insert into board(user_id,title,content,wdate) values(?, ?, ?,str_to_date(?, '%Y-%m-%d'))";                        // sql 쿼리
+		String sql = "insert into board(user_id,title,movie_title,content,wdate) values(?, ?, ?, ?,str_to_date(?, '%Y-%m-%d'))";                        // sql 쿼리
 
 		System.out.println("try/catch 입성전");
 		try{
@@ -41,8 +42,9 @@
 
 			pstmt.setString(1, id);
 			pstmt.setString(2, title);
-			pstmt.setString(3, content);
-			pstmt.setString(4, date.format(today));
+			pstmt.setString(3, movietitle);
+			pstmt.setString(4, content);
+			pstmt.setString(5, date.format(today));
 			
 			pstmt.executeUpdate();
 			System.out.println("삽입완료");
